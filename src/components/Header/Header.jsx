@@ -42,6 +42,9 @@ export const Header = ({ theme, setTheme }) => {
           <FontAwesomeIcon
             icon={theme === "dark" ? faSun : faMoon}
           ></FontAwesomeIcon>
+          <div>
+            <input className="input" placeholder="Enter your location"></input>
+          </div>
         </div>
       </div>
     </div>
