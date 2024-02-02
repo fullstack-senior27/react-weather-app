@@ -25,7 +25,7 @@ export const Header = ({ theme, setTheme }) => {
   };
 
   return (
-    <div className="header-container">
+    <>
       <div className="location">
         <div className="city">Timișoara</div>
         <div className="country">Romania</div>
@@ -42,11 +42,11 @@ export const Header = ({ theme, setTheme }) => {
           <FontAwesomeIcon
             icon={theme === "dark" ? faSun : faMoon}
           ></FontAwesomeIcon>
-          <div>
+          <div className="search">
             <input className="input" placeholder="Enter your location"></input>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
