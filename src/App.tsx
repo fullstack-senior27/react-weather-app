@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from "./components/Header/Header";
 import './App.scss';
 import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
 
 function App() {
+  const [theme, setTheme] = useState("dark");
+
   return (
-    <div className="app">
-      <Header></Header>
-      <CurrentWeather></CurrentWeather>
-    </div>
+    <main className={theme}>
+      <div className="main-container">
+        <Header theme={theme} setTheme={setTheme}></Header>
+        <CurrentWeather theme={theme}></CurrentWeather>
+      </div>
+    </main>
   );
-}
+};
 
 export default App;
