@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useLocation } from ".";
 import {
   CurrentWeatherModel,
   DailyWeatherDetailsModel,
@@ -10,7 +11,7 @@ import {
   HourlyWeatherModel,
 } from "../models";
 
-export const useWeather = (
+export const useWeather = (units: string, useMockData: boolean) => {
   lat: number,
   lon: number,
   units: string,
@@ -20,8 +21,9 @@ export const useWeather = (
   const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
   const path = "onecall";
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { location } = useLocation();
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] =
     useState<CurrentWeatherModel>(EmptyCurrentWeather);
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeatherModel>(
@@ -33,21 +35,22 @@ export const useWeather = (
 
   useEffect(() => {
     setIsLoading(true);
-    const url = useMockData
-    ? "./mock-data/weather.json"
-    : `${baseUrl}/${path}?lat=${lat}&lon=${lon}&units=${units}&exclude=minutely,alerts&appid=${apiKey}`;
-    axios
-      .get(url)
-      .then((response) => {
-        console.log(response.data);
-        setCurrent(response.data.current);
-        setHourly(response.data.hourly);
-        setDaily(response.data.daily);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [lat, lon, units, useMockData, baseUrl, apiKey]);
+    if (location) {
+      const url = useMockData
+        ? "./mock-data/weather.json"
+        : `${baseUrl}/${path}?lat=${location.coords.latitude}&lon=${location.coords.longitude}&units=${units}&exclude=minutely,alerts&appid=${apiKey}`;
+      axios
+        .get(url)
+        .then((response) => {
+          setCurrent(response.data.current);
+          setHourly(response.data.hourly);
+          setDaily(response.data.daily);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [location, units, useMockData, baseUrl, apiKey]);
   
   const setCurrent = (data: any) => {
     setCurrentWeather({
@@ -88,7 +91,6 @@ export const useWeather = (
         },
       });
     });
-    console.log(hourly.length);
     setHourlyWeather({ hourly: hourly });
   };
 
@@ -113,7 +115,6 @@ export const useWeather = (
         rain: item.pop * 100,
       });
     });
-    console.log(daily.length);
     setDailyWeather({ daily: daily });
   };
 
