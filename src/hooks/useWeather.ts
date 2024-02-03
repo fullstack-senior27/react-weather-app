@@ -70,7 +70,7 @@ export const useWeather = (
 
   const setHourly = (data: any) => {
     let hourly: CurrentWeatherModel[] = [];
-    data.forEach((item: any) => {
+    data.slice(0, 24).forEach((item: any) => {
       hourly.push({
         dt: item.dt,
         weather: {
@@ -88,6 +88,7 @@ export const useWeather = (
         },
       });
     });
+    console.log(hourly.length);
     setHourlyWeather({ hourly: hourly });
   };
 
@@ -112,6 +113,7 @@ export const useWeather = (
         rain: item.pop * 100,
       });
     });
+    console.log(daily.length);
     setDailyWeather({ daily: daily });
   };
 
