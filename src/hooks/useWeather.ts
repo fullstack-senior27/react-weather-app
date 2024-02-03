@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {
   CurrentWeatherModel,
+  DailyWeatherDetailsModel,
   DailyWeatherModel,
   EmptyCurrentWeather,
   EmptyDailyWeatherModel,
@@ -85,23 +86,24 @@ export const useWeather = (lat: number, lon: number, units: string) => {
   };
 
   const setDaily = (data: any) => {
-    let daily: CurrentWeatherModel[] = [];
-    data.forEach((item: any) => {
+    let daily: DailyWeatherDetailsModel[] = [];
+    data.slice(1).forEach((item: any) => {
       daily.push({
         dt: item.dt,
+        clouds: item.clouds,
+        humidity: item.humidity,
+        pressure: item.pressure,
+        sunrise: item.sunrise,
+        sunset: item.sunset,
+        minTemp: item.temp.min,
+        maxTemp: item.temp.max,
+        uvi: item.uvi,
         weather: {
           icon: item.weather[0].icon,
           description: item.weather[0].description,
         },
-        temp: item.temp,
-        feels_like: item.feels_like,
-        details: {
-          rain: 0,
-          visibility: item.visibility / 1000,
-          humidity: item.humidity,
-          pressure: item.pressure,
-          wind_speed: item.wind_speed,
-        },
+        wind_speed: item.wind_speed,
+        rain: 0,
       });
     });
     setDailyWeather({ daily: daily });
