@@ -39,7 +39,7 @@ export const Hourly = ({ theme }) => {
     hourlyWeather ? hourlyWeather[0].id : 0
   );
 
-  const hourlyClickHandler = (h) => {
+  const clickHandler = (h) => {
     setActiveIndex(h.id);
   };
 
@@ -56,6 +56,7 @@ export const Hourly = ({ theme }) => {
                   ? "hourly-item-container active"
                   : "hourly-item-container"
               }
+              onClick={() => clickHandler(h)}
             >
               <HourlyItem theme={theme}></HourlyItem>
             </div>
