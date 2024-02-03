@@ -22,7 +22,8 @@ export const Container = ({ theme, setTheme }: ContainerProps) => {
   const { isLoading, currentWeather, hourlyWeather, dailyWeather } = useWeather(
     45.7634188,
     21.2397304,
-    unit
+    unit,
+    true
   );
 
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =

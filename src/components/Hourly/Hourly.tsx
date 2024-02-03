@@ -33,7 +33,7 @@ export const Hourly = ({ theme, unit, data, clickHandler }: HourlyProps) => {
                   ? "hourly-item-container active"
                   : "hourly-item-container"
               }
-              onClick={() => clickHandler(h)}
+              onClick={() => onClickHandler(h)}
             >
               <HourlyItem theme={theme} unit={unit} data={h}></HourlyItem>
             </div>
