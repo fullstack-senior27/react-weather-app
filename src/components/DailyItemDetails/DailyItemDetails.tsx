@@ -1,19 +1,18 @@
 import React from "react";
-import { DailyWeatherDetailsModel, SettingsModel } from "../../models";
+import { DailyWeatherDetailsModel } from "../../models";
 import "./DailyItemDetails.scss";
 
 type DailyItemDetailsProps = {
-  settings: SettingsModel;
   data: DailyWeatherDetailsModel;
 };
 
-export const DailyItemDetails = ({ settings, data }: DailyItemDetailsProps) => {
+export const DailyItemDetails = ({ data }: DailyItemDetailsProps) => {
   return (
     <div className="daily-item-details">
       <div className="daily-details-grid">
         <div className="daily-details-grid-item">
           <label>Rain:</label>
-          <label>{data.rain}%</label>
+          <label>{data.rain.toFixed(2)}%</label>
         </div>
         <div className="daily-details-grid-item">
           <label>Pressure:</label>
