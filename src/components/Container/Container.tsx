@@ -18,12 +18,13 @@ type ContainerProps = {
 };
 
 export const Container = ({ settings, changeSettings }: ContainerProps) => {
+  const useMockData: boolean = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
     useState(EmptyCurrentWeather);
   const [currentLocationName, setCurrentLocationName] = useState<string>("");
 
   const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
-  useWeather(currentLocationName, settings.unit, settings.useMockData);
+  useWeather(currentLocationName, settings.unit, useMockData);
 
   useEffect(() => {
     setCurrentWeatherSelectedItem(currentWeather);
@@ -39,7 +40,7 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
 
   return (
     <>
-      {settings.useMockData ? (
+      {useMockData ? (
         <div className="info-popup">
           The application is running in demo mode. To run the application with
           real data please check the{" "}
