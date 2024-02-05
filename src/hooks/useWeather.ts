@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useErrorHandler } from "react-error-boundary";
 import { useLocation } from ".";
 import {
   CurrentWeatherModel,
@@ -31,6 +32,7 @@ export const useWeather = (
   const [dailyWeather, setDailyWeather] = useState<DailyWeatherModel>(
     EmptyDailyWeatherModel
   );
+  const handleError = useErrorHandler();
 
   useEffect(() => {
     setIsLoading(true);
@@ -45,12 +47,14 @@ export const useWeather = (
           setHourly(response.data.hourly);
           setDaily(response.data.daily);
         })
-        .catch((error) => {})
+        .catch((error) => {
+          handleError(error);
+        })
         .finally(() => {
           setTimeout(() => setIsLoading(false), 100);
         });
     }
-  }, [location, unit, useMockData, baseUrl, apiKey]);
+  }, [location, unit, useMockData, baseUrl, apiKey, handleError]);
   
   const setCurrent = (data: any) => {
     setCurrentWeather({
