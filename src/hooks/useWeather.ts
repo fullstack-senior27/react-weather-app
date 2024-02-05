@@ -45,8 +45,9 @@ export const useWeather = (
           setHourly(response.data.hourly);
           setDaily(response.data.daily);
         })
+        .catch((error) => {})
         .finally(() => {
-          setIsLoading(false);
+          setTimeout(() => setIsLoading(false), 100);
         });
     }
   }, [location, unit, useMockData, baseUrl, apiKey]);
