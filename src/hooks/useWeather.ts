@@ -11,12 +11,16 @@ import {
   HourlyWeatherModel,
 } from "../models";
 
-export const useWeather = (units: string, useMockData: boolean) => {
+export const useWeather = (
+  locationName: string,
+  units: string,
+  useMockData: boolean
+) => {
   const baseUrl = process.env.REACT_APP_OPENWEATHER_API_BASEURL;
   const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
   const path = "onecall";
 
-  const { location } = useLocation();
+  const { location } = useLocation(locationName, useMockData);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] =

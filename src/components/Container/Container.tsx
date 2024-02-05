@@ -18,11 +18,14 @@ type ContainerProps = {
 
 export const Container = ({ theme, changeTheme }: ContainerProps) => {
   const unit = "metric";
-  const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
-  useWeather(unit, false);
+  
 
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
-  useState(EmptyCurrentWeather);
+    useState(EmptyCurrentWeather);
+  const [currentLocationName, setCurrentLocationName] = useState<string>("");
+
+  const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
+    useWeather(currentLocationName, unit, true);
 
   useEffect(() => {
     setCurrentWeatherSelectedItem(currentWeather);
@@ -30,6 +33,10 @@ export const Container = ({ theme, changeTheme }: ContainerProps) => {
 
   const hourlyItemClickHandler = (current: CurrentWeatherModel) => {
     setCurrentWeatherSelectedItem(current);
+  };
+
+  const changeLocationHandler = (location: string) => {
+    console.log(location);
   };
 
   return (
@@ -42,6 +49,7 @@ export const Container = ({ theme, changeTheme }: ContainerProps) => {
             data={currentWeatherSelectedItem}
             theme={theme}
             changeTheme={changeTheme}
+            changeLocation={changeLocationHandler}
           ></Header>
           <CurrentWeather
             theme={theme}
