@@ -2,6 +2,7 @@
 @import "../../styles/media-queries";
 @import "../../styles/variables";
 @import "../../styles/font-size";
+@import "../../styles/animation";
 
 .info-popup {
   @include mobile-small-portrait {
@@ -54,10 +55,7 @@
       grid-template-rows: repeat($mobile-small-portrait-grid-rows, auto);
       column-gap: $mobile-small-portrait-grid-gap;
       row-gap: $mobile-small-portrait-grid-gap;
-    }
-    .loading-contianer {
-      width: $mobile-small-portrait-width;
-      height: 100vh;
+      animation: fadein $animation-time;
     }
   }
   @include mobile-small-landscape {
@@ -70,12 +68,8 @@
       grid-template-rows: repeat($mobile-small-landscape-grid-rows, auto);
       column-gap: $mobile-small-landscape-grid-gap;
       row-gap: $mobile-small-landscape-grid-gap;
+      animation: fadein $animation-time;
     }
-    .loading-contianer {
-      width: $mobile-small-landscape-width;
-      height: 100vh;
-    }
-    
   }
   @include mobile-portrait {
     width: $mobile-portrait-width;
@@ -87,10 +81,7 @@
       grid-template-rows: repeat($mobile-portrait-grid-rows, auto);
       column-gap: $mobile-portrait-grid-gap;
       row-gap: $mobile-portrait-grid-gap;
-    }
-    .loading-contianer {
-      width: $mobile-portrait-width;
-      height: 100vh;
+      animation: fadein $animation-time;
     }
   }
   @include mobile-landscape {
@@ -103,10 +94,7 @@
       grid-template-rows: repeat($mobile-landscape-grid-rows, auto);
       column-gap: $mobile-landscape-grid-gap;
       row-gap: $mobile-landscape-grid-gap;
-    }
-    .loading-contianer {
-      width: $mobile-landscape-width;
-      height: 100vh;
+      animation: fadein $animation-time;
     }
   }
   @include tablet-portrait {
@@ -119,10 +107,7 @@
       grid-template-rows: repeat($tablet-portrait-grid-rows, auto);
       column-gap: $tablet-portrait-grid-gap;
       row-gap: $tablet-portrait-grid-gap;
-    }
-    .loading-contianer {
-      width: $tablet-portrait-width;
-      height: 100vh;
+      animation: fadein $animation-time;
     }
   }
   @include tablet-landscape {
@@ -135,10 +120,7 @@
       grid-template-rows: repeat($tablet-landscape-grid-rows, auto);
       column-gap: $tablet-landscape-grid-gap;
       row-gap: $tablet-landscape-grid-gap;
-    }
-    .loading-contianer {
-      width: $tablet-landscape-width;
-      height: 100vh;
+      animation: fadein $animation-time;
     }
   }
   @include desktop {
@@ -151,12 +133,9 @@
       grid-template-rows: repeat($desktop-grid-rows, auto);
       column-gap: $desktop-grid-gap;
       row-gap: $desktop-grid-gap;
+      animation: fadein $animation-time;
     }
-    .loading-contianer {
-      width: $desktop-width;
-      height: 100vh;
-    }
-  }
   margin-left: auto;
   margin-right: auto;
+  }
 }
