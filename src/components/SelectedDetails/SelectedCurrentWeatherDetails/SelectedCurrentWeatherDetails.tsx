@@ -39,21 +39,13 @@ export const SelectedDailyWeatherDetails = ({
         <div className="current-weather-details-grid-item">
         <label>Sunrise:</label>
           <label>
-            {new Date(data.sunrise * 1000).toLocaleString("en-GB", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            })}
+            {data.sunrise}
           </label>
         </div>
         <div className="current-weather-details-grid-item">
         <label>Sunset:</label>
           <label>
-            {new Date(data.sunset * 1000).toLocaleString("en-GB", {
-              hour: "2-digit",
-              minute: "2-digit",
-              hour12: false,
-            })}
+            {data.sunset}
           </label>
         </div>
       </div>

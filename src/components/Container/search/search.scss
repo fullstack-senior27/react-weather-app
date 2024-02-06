@@ -12,6 +12,9 @@
     z-index: 0;
     padding-left: 15px;
     cursor: pointer;
+    &:focus {
+      outline: none;
+    }
   }
   .shadow {
     padding-top: 10px;
