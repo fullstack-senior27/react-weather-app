@@ -12,30 +12,36 @@ export const useLocation = (locationName: string, useMockData: boolean) => {
 
   const getLocationDetails = useCallback(
     (position: GeolocationPosition) => {
-      axios
-        .get(
-          useMockData
-            ? "./mock-data/locality.json"
-            : `${geocodeBaseUrl}?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=locality&key=${apiKey}`
-        )
-        .then((res: any) => {
-          console.log("useLocation--", res.data);
-          if (res.data && res.data.results[0]) {
-            const formattedAddress =
-              res.data.results[0].formatted_address.split(",");
-            setLocation({
-              position: {
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              },
-              locality: formattedAddress[0].replace(/\s/g, ""),
-              country: formattedAddress[1].replace(/\s/g, ""),
-            });
-          }
-        })
-        .catch((error) => {
-          handleError(error);
-        });
+      // axios
+      //   .get(
+      //     useMockData
+      //       ? "./mock-data/locality.json"
+      //       : `${geocodeBaseUrl}?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=locality&key=${apiKey}`
+      //   )
+      //   .then((res: any) => {
+      //     console.log("useLocation--", res.data);
+      //     if (res.data && res.data.results[0]) {
+      //       const formattedAddress =
+      //         res.data.results[0].formatted_address.split(",");
+      //       setLocation({
+      //         position: {
+      //           latitude: position.coords.latitude,
+      //           longitude: position.coords.longitude,
+      //         },
+      //         locality: formattedAddress[0].replace(/\s/g, ""),
+      //         country: formattedAddress[1].replace(/\s/g, ""),
+      //       });
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     handleError(error);
+      //   });
+      setLocation({
+        position: {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        }
+      });
     },
     [apiKey, geocodeBaseUrl, handleError, useMockData]
   );
@@ -58,8 +64,8 @@ export const useLocation = (locationName: string, useMockData: boolean) => {
                 latitude: location.lat,
                 longitude: location.lng,
               },
-              locality: formattedAddress[0].replace(/\s/g, ""),
-              country: formattedAddress[1].replace(/\s/g, ""),
+              // locality: formattedAddress[0].replace(/\s/g, ""),
+              // country: formattedAddress[1].replace(/\s/g, ""),
             });
           }
         })

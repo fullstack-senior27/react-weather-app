@@ -19,7 +19,7 @@ type ContainerProps = {
 };
 
 export const Container = ({ settings, changeSettings }: ContainerProps) => {
-  const useMockData: boolean = false;
+  const useMockData: boolean = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
     useState(EmptyCurrentWeather);
   const [currentLocationName, setCurrentLocationName] = useState<string>("");
