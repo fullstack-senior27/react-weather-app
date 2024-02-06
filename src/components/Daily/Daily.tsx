@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DailyItem from "../DailyItem/DailyItem";
 import { DailyWeatherModel, SettingsModel } from "../../models";
 import "./Daily.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type DailyProps = {
   settings: SettingsModel;

@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
-import { useWeather } from "../../hooks";
 import {
   CurrentWeatherModel,
   HourlyWeatherModel,
-  SettingsModel,
-  EmptyCurrentWeather,
+  SettingsModel
 } from "../../models";
-import CurrentWeatherDetails from "../CurrentWeatherDetails/CurrentWeatherDetails";
 import HourlyItem from "../HourlyItem/HourlyItem";
 import "./Hourly.scss";
 

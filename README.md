@@ -1,9 +1,9 @@
-# React-Weather-App
+# react-weather-app
 
 Weather App is a weather app developed in typescript using `React`, `HTML` and `SASS`.
 
-The app allows you to see the weather from your current location or another location around the globe using **OpenWeather Api** and **Google Maps Api**. \
-Using **One Call API** the app displays the current weather, 24 hours and 6 days forecast. You can change the unit system from metric to imperial. \
+The app allows you to see the weather from your current location or another location around the globe using **weatherapi**. \
+The app displays the current weather, 24 hours and 6 days forecast. \
 The app is available in **light** and **dark mode**.
 
 ## Getting Started with Create React App
@@ -60,35 +60,18 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome) (Icons)
 - [React Error Boundary](https://github.com/bvaughn/react-error-boundary) (Error Handling)
 - [React Indiana Drag Scroll](https://github.com/norserium/react-indiana-drag-scroll) (Scroll on drag)
-- [Github Pages](https://github.com/tschaub/gh-pages) (Deploy)
+- [Lodash](https://github.com/lodash/lodash) (debounce)
 
 ## Setup
 
 Create a file called **.env** in the root of the React-Weather-App project. Add the following code in the file.
 
 ```
-REACT_APP_OPENWEATHER_API_BASEURL = "https://api.openweathermap.org/data/2.5/onecall"
-REACT_APP_OPENWEATHER_API_KEY = "YOUR_OPENWEATHERAPI_KEY"
-REACT_APP_GEOLOCATION_GEOCODE_BASEURL = "https://maps.googleapis.com/maps/api/geocode/json"
-REACT_APP_GEOLOCATION_API_KEY = "YOUR_GOOGLEMAPSAPI_KEY"
+REACT_APP_WEATHER_FORECAST_API_BASEURL = http://api.weatherapi.com/v1/forecast.json
+REACT_APP_WEATHER_LOCATION_API_BASEURL = http://api.weatherapi.com/v1/search.json
+REACT_APP_WEATHER_API_KEY = YOUR_API_KEY
 ```
 
-The app is using **One Call API** from **OpenWeather API**. To start the project you need an account and **OpenWeather API Key**. You can signup and get the key from [here](https://openweathermap.org/api).
-
-The app is using **Geocoding** and **Reverse Geocoding** from **Google Maps API**. To start the project you need a **google** account and **Google Maps API Key**. You can get the key from [here](https://developers.google.com/maps/documentation/geocoding/overview).
-
-## Additional
-
-### Period
-
-3 days
-
-### New Technology
-
-******
-
-### Added NPM Packages
-
-******
+The app is using **weatherapi**. To start the project you need an account and **weatherapi API Key**. You can signup and get the key from [here](https://www.weatherapi.com/).
 
 Thank You ☺

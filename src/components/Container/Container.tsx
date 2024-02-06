@@ -3,8 +3,6 @@ import { useWeather } from "../../hooks";
 import {
   CurrentWeatherModel,
   EmptyCurrentWeather,
-  EmptyDailyWeatherModel,
-  EmptyHourlyWeatherModel,
   EmptyLocationModel,
   LocationModel,
   SettingsModel,

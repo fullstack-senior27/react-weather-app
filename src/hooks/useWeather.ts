@@ -38,7 +38,7 @@ export const useWeather = (
     //if (location !== EmptyLocationModel) {
       setIsLoading(true);
       
-      const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=8`;
+      const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=7`;
 
       axios
         .get(url)
