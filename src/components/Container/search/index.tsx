@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./search.scss";
 import axios from "axios";
+import { useErrorHandler } from "react-error-boundary";
 const localData = require("./localData.json");
 const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
 
@@ -18,55 +19,22 @@ export default function Search() {
   const [changeLocal, setChangeLocal] = useState("");
   const [cityName, setCityName] = useState([]);
 
-  useEffect(()=> {
-    (async () => {
-      const response = await fetch(`${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${changeLocal}`,
-      GEO_API_OPTIONS);
-      // Check status codes and whatnot here and handle accordingly
-      const data = await response.json();
-      console.log("data:",data);
-      setCityName(data.data);
-      // return data;
-    })();
-  },[])
-
-  // useEffect(() => {
-  //   setTimeout(async () => {
-  //       const response = await fetch(`${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${changeLocal}`,
-  //            GEO_API_OPTIONS);
-  //       const data = await response.json();
-  //       console.log("data:",data);
-  //       setCityName(data.data);
-  //   }, 3000);
-  // }, [changeLocal]);
-
-  // useEffect(() => {
-  //   setTimeout(async () => {
-  //     let response = await axios.get(`${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${changeLocal}`,
-  //     GEO_API_OPTIONS)
-  //     console.log("data:",response);
-  //     setCityName(response.data.data);
-  //   }, 1000);
-  // }, []);
-
+  const handleError = useErrorHandler();
   const handleChange = async (e: any) => {
     e.preventDefault();
     setSelect("get");
     setChangeLocal(e.target.value);
-    // try {
-    //   const response = await fetch(
-    //     `${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${e.target.value}`,
-    //     GEO_API_OPTIONS
-    //   );
 
-    //   const data = await response.json();
-    //   console.log("data", data);
-    //   setCityName(data.data);
-    //   return data;
-    // } catch (error) {
-    //   console.log(error);
-    //   return;
-    // }
+    axios
+      .get(`${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${e.target.value}`, GEO_API_OPTIONS)
+      .then((res: any) => {
+        if (res.data && res.data.data) {
+          setCityName(res.data.data);
+        }
+      })
+      .catch((error) => {
+        handleError(error);
+      });
   };
 
   function slideUp() {
@@ -86,7 +54,7 @@ export default function Search() {
         className="comboGroup"
         type="text"
         id="carBrand"
-        placeholder="Select or type a new option..."
+        placeholder="City Name"
         onClick={slideUp}
         value={changeLocal}
         onChange={handleChange}
