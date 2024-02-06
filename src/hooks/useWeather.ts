@@ -41,7 +41,11 @@ export const useWeather = (
       const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=7`;
 
       axios
-        .get(url)
+        .get(url, {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
         .then((response) => {
           const weekForecast = response.data.forecast.forecastday;
           setCurrent(weekForecast[0]);
