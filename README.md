@@ -85,10 +85,10 @@ The app is using **Geocoding** and **Reverse Geocoding** from **Google Maps API*
 
 ### New Technology
 
----------
+******
 
 ### Added NPM Packages
 
----------
+******
 
 Thank You ☺
