@@ -3,6 +3,10 @@ import { useWeather } from "../../hooks";
 import {
   CurrentWeatherModel,
   EmptyCurrentWeather,
+  EmptyDailyWeatherModel,
+  EmptyHourlyWeatherModel,
+  EmptyLocationModel,
+  LocationModel,
   SettingsModel,
 } from "../../models";
 import { Loading } from "../Common";
@@ -22,12 +26,12 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
   const useMockData: boolean = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
     useState(EmptyCurrentWeather);
-  const [currentLocationName, setCurrentLocationName] = useState<string>("");
-  const index = 0;
+  const [index, setIndex] = useState(0);
+  const [location, setLocation] = useState(EmptyLocationModel);
 
-  const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
-    useWeather(currentLocationName, settings.unit, useMockData,index);
-
+  const { isLoading, currentWeather, hourlyWeather, dailyWeather } =
+      useWeather(location, settings.unit, useMockData, index);
+      
   useEffect(() => {
     setCurrentWeatherSelectedItem(currentWeather);
   }, [currentWeather]);
@@ -36,8 +40,8 @@ export const Container = ({ settings, changeSettings }: ContainerProps) => {
     setCurrentWeatherSelectedItem(current);
   };
 
-  const changeLocationHandler = (location: string) => {
-    setCurrentLocationName(location);
+  const changeLocationHandler = (loc: LocationModel) => {
+    setLocation(loc);
   };
 
   return (

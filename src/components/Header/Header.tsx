@@ -1,15 +1,15 @@
 import React from "react";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CurrentWeatherModel, SettingsModel } from "../../models";
+import { CurrentWeatherModel, LocationModel, SettingsModel } from "../../models";
 import "./Header.scss";
-import Search from "../Container/search";
+import SearchCity from "../SearchCity/SearchCity";
 
 type HeaderProps = {
   data: CurrentWeatherModel;
   settings: SettingsModel;
   changeSettings: (newSettings: object) => void;
-  changeLocation: (location: string) => void;
+  changeLocation: (location: LocationModel) => void;
 };
 
 export const Header = ({
@@ -58,7 +58,7 @@ export const Header = ({
         </div>
       </div>
       <div className="search">
-        <Search />
+        <SearchCity changeLocation={changeLocation}/>
       </div>
     </>
   );

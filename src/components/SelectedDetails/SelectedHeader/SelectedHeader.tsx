@@ -2,14 +2,14 @@ import React from "react";
 import { faLeftLong, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./SelectedHeader.scss";
-import { CurrentWeatherModel, SettingsModel } from "../../../models";
-import Search from "../../Container/search";
+import { CurrentWeatherModel, LocationModel, SettingsModel } from "../../../models";
+import SearchCity from "../../SearchCity/SearchCity";
 
 type HeaderProps = {
   data: CurrentWeatherModel;
   settings: SettingsModel;
   changeSettings: (newSettings: object) => void;
-  changeLocation: (location: string) => void;
+  changeLocation: (location: LocationModel) => void;
 };
 
 export const SelectedHeader = ({
@@ -58,7 +58,7 @@ export const SelectedHeader = ({
         </div>
       </div>
       <div className="search">
-        <Search />
+        <SearchCity changeLocation={changeLocation}/>
       </div>
     </>
   );
