@@ -35,10 +35,10 @@ export const useWeather = (
   const handleError = useErrorHandler();
 
   useEffect(() => {
-    if (location !== EmptyLocationModel) {
+    //if (location !== EmptyLocationModel) {
       setIsLoading(true);
       
-      const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=8`;
+      const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=7`;
 
       axios
         .get(url)
@@ -55,7 +55,7 @@ export const useWeather = (
         .finally(() => {
           setTimeout(() => setIsLoading(false), 100);
         });
-    }
+    //}
   }, [location, unit, useMockData, baseUrl, apiKey, handleError]);
 
   const setCurrent = (data: any) => {

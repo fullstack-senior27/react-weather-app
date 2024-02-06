@@ -15,8 +15,8 @@ type SearchCityProps = {
 const SearchCity = ({ changeLocation }: SearchCityProps) => {
   const [counter, setCounter] = useState(1);
   const [select, setSelect] = useState("false");
-  const [changeLocal, setChangeLocal] = useState("");
-  const [cityName, setCityName] = useState([]);
+  const [inputCityName, setInputCityName] = useState("");
+  const [cityNames, setCityNames] = useState([]);
 
   const handleError = useErrorHandler();
   const delayedQuery = useCallback(debounce(e => {
@@ -28,18 +28,18 @@ const SearchCity = ({ changeLocation }: SearchCityProps) => {
     })
     .then((res: any) => {
       if (res.data) {
-        setCityName(res.data);
+        setCityNames(res.data);
       }
     })
     .catch((error) => {
       handleError(error);
     });
-  }, 500), []);
+  }, 300), []);
 
   const handleChange = async (e: any) => {
     e.preventDefault();
     setSelect("get");
-    setChangeLocal(e.target.value);
+    setInputCityName(e.target.value);
 
     delayedQuery(e);
   };
@@ -63,18 +63,18 @@ const SearchCity = ({ changeLocation }: SearchCityProps) => {
         id="carBrand"
         placeholder="City Name"
         onClick={slideUp}
-        value={changeLocal}
+        value={inputCityName}
         onChange={handleChange}
       />
 
       {select === "get" && (
         <div className="shadow">
-          {cityName.map((item: any, index: any) => (
+          {cityNames.map((item: any, index: any) => (
             <div
               key={index}
               className="position"
               onClick={() => {
-                setChangeLocal(item.name);
+                setInputCityName(item.name);
                 setSelect("false");
                 changeLocation({
                   city: item.name, 

@@ -4,6 +4,6 @@ export interface LocationPositionModel {
 }
 
 export const EmptyLocationPositionModel = {
-  latitude: 0,
-  longitude: 0,
+  latitude: 35.69,
+  longitude: 139.69,
 };

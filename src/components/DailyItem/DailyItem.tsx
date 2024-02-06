@@ -2,8 +2,6 @@ import React from "react";
 import { SettingsModel } from "../../models";
 import { DailyWeatherDetailsModel } from "../../models/DailyWeatherDetailsModel";
 import "./DailyItem.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 type DailyItemProps = {
   settings: SettingsModel;

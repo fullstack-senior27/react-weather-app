@@ -4,21 +4,17 @@ import "./SelectedContainer.scss";
 import { useWeather } from "../../../hooks";
 import {
   CurrentWeatherModel,
-  EmptyCurrentWeather,
-  EmptyDailyWeatherModel,
-  EmptyHourlyWeatherModel,
-  EmptyLocationModel,
+  EmptyCurrentWeather, EmptyLocationModel,
   LocationModel,
-  SettingsModel,
+  SettingsModel
 } from "../../../models";
 import { Loading } from "../../Common";
 import SelectedHeader from "../SelectedHeader/SelectedHeader";
 import SelectedCurrentWeather from "../SelectedCurrentWeather/SelectedCurrentWeather";
-import SelectedCurrentWeatherDetails, {
+import {
   SelectedDailyWeatherDetails,
 } from "../SelectedCurrentWeatherDetails/SelectedCurrentWeatherDetails";
 import SelectedHourly from "../SelectedHourly/SelectedHourly";
-import DailyItemDetails from "../../DailyItemDetails/DailyItemDetails";
 
 type ContainerProps = {
   settings: SettingsModel;
@@ -33,7 +29,7 @@ export const SelectedContainer = ({
   data,
   index,
 }: ContainerProps) => {
-  const useMockData: boolean = true;
+  const useMockData: boolean = false;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] = useState(EmptyCurrentWeather);
 
   const [location, setLocation] = useState(EmptyLocationModel);

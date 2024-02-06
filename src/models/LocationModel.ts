@@ -11,7 +11,7 @@ export interface LocationModel {
 }
 
 export const EmptyLocationModel = {
-  city: "",
+  city: "Tokyo",
   position: EmptyLocationPositionModel,
   // country: "",
   // locality: "",
