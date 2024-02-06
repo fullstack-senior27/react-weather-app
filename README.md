@@ -74,4 +74,6 @@ REACT_APP_WEATHER_API_KEY = YOUR_API_KEY
 
 The app is using **weatherapi**. To start the project you need an account and **weatherapi API Key**. You can signup and get the key from [here](https://www.weatherapi.com/).
 
+HOSTING LINK: https://react-weather-app-five-omega.vercel.app/
+
 Thank You ☺
