@@ -22,7 +22,7 @@ export const useWeather = (
   const lat = 35.69;
   const lon = 139.69;
 
-  const { location } = useLocation(locationName, useMockData);
+  const { location } = useLocation(/*locationName*/"Tokyo", useMockData);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] =
