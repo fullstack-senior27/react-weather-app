@@ -9,6 +9,7 @@ import { useLocation } from "react-router";
 export const App = () => {
   const { settings, changeSettings } = useSettings();
   let { state } = useLocation();
+  let { search } = useLocation();
   return (
     <main className={settings.theme}>
       <div className="main-container">
@@ -16,6 +17,7 @@ export const App = () => {
           <SelectedContainer
             settings={settings}
             data={state}
+            index={search.slice(1,2)}
             changeSettings={changeSettings}
           />
         </ErrorBoundary>

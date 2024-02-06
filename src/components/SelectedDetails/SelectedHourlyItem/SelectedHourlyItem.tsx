@@ -11,7 +11,7 @@ export const SelectedHourlyItem = ({ settings, data }: HourlyItemProps) => {
   const weatherCode = data.weather.icon;
   const unitSymbol = settings.unit === "metric" ? "C" : "F";
   return (
-    <div className="hourly-item">
+    <div className="selhourly-item">
       <label className="hour">{new Date(data.dt * 1000).getHours()}:00</label>
       <img
         src={`https:${weatherCode}`}

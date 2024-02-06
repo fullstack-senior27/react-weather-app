@@ -15,7 +15,7 @@ export const useLocation = (locationName: string, useMockData: boolean) => {
       axios
         .get(
           useMockData
-            ? "./mock-data/locality.json"
+            ? "../../mock-data/locality.json"
             : `${geocodeBaseUrl}?latlng=${position.coords.latitude},${position.coords.longitude}&result_type=locality&key=${apiKey}`
         )
         .then((res: any) => {

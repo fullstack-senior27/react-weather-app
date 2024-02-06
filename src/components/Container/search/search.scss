@@ -8,7 +8,7 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     height: 40px;
-    background-color: #cecece;
+    background-color: white;
     z-index: 0;
     padding-left: 15px;
     cursor: pointer;
@@ -17,16 +17,16 @@
     padding-top: 10px;
     padding-bottom: 10px;
     line-height: 30px;
-    top: 110%;
+    top: 105%;
     width: 100%;
     z-index: 3;
-    background-color: #dddcdce6;
+    background-color: #dddddd;
     border-radius: 5px;
     position: absolute;
 
     .position {
       padding-left: 15px;
-      font-size: 20px;
+      font-size: 14px;
       font-family: Arial, Helvetica, sans-serif;
       cursor: pointer;
       .position:hover {

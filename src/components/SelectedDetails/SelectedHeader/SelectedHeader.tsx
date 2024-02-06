@@ -39,7 +39,7 @@ export const SelectedHeader = ({
   return (
     <>
       <div className="location">
-        <a href="/React-WeatherApp" className="backLink">
+        <a href="/" className="backLink">
           <FontAwesomeIcon icon={faLeftLong}></FontAwesomeIcon>
         </a>
         <label className="date">{getFormatedDate()}</label>

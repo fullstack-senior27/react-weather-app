@@ -32,7 +32,7 @@
     grid-row: 3;
   }
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   a {
     font-size: 22px;
     font-weight: bold;
@@ -41,7 +41,7 @@
   }
   .image {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     width: 50%;
     .icon {
       width: 120px;

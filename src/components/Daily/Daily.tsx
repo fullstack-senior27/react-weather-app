@@ -24,10 +24,10 @@ export const Daily = ({ settings, data }: DailyProps) => {
     <div className="daily">
       <label className="title">Daily</label>
       <div className="daily-items-container">
-        {data.daily.map((d) => (
+        {data.daily.map((d,index) => (
           <div key={d.dt}>
             <Link
-              to={{ pathname: "/React-WeatherApp/Details" }}
+              to={{ pathname: "/React-WeatherApp/Details", search: `${index}` }}
               state={d}
               className="link"
             >

@@ -19,6 +19,7 @@ import DailyItemDetails from "../../DailyItemDetails/DailyItemDetails";
 type ContainerProps = {
   settings: SettingsModel;
   data: any;
+  index:any;
   changeSettings: (newSettings: object) => void;
 };
 
@@ -26,6 +27,7 @@ export const SelectedContainer = ({
   settings,
   changeSettings,
   data,
+  index,
 }: ContainerProps) => {
   const useMockData: boolean = true;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
@@ -33,13 +35,11 @@ export const SelectedContainer = ({
   const [currentLocationName, setCurrentLocationName] = useState<string>("");
 
   const { isLoading, location, currentWeather, hourlyWeather, dailyWeather } =
-    useWeather(currentLocationName, settings.unit, useMockData);
+    useWeather(currentLocationName, settings.unit, useMockData, index);
 
   useEffect(() => {
     setCurrentWeatherSelectedItem(currentWeather);
-    console.log("xxxxxxxxxxxxxxxxxxxxx", currentWeather);
-    console.log("zzzzzzzzzzzzzzzzzzzzz", data);
-  }, [data]);
+  }, [currentWeather]);
 
   const hourlyItemClickHandler = (current: CurrentWeatherModel) => {
     setCurrentWeatherSelectedItem(current);
@@ -59,15 +59,15 @@ export const SelectedContainer = ({
             changeSettings={changeSettings}
             changeLocation={changeLocationHandler}
           />
-          <SelectedCurrentWeather
-            settings={settings}
-            data={currentWeatherSelectedItem}
-          />
           <SelectedHourly
             settings={settings}
             data={hourlyWeather}
             clickHandler={hourlyItemClickHandler}
           />
+          <SelectedCurrentWeather
+            settings={settings}
+            data={currentWeatherSelectedItem}
+          />          
           <SelectedDailyWeatherDetails data={data} />    
         </div>
       </Loading>

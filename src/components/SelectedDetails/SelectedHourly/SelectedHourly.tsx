@@ -30,13 +30,11 @@ export const SelectedHourly = ({ settings, data, clickHandler }: HourlyProps) =>
     data && data.hourly[0] ? data.hourly[0].dt : 0
   );
 
-  console.log(data.hourly);
   const partHourly = data.hourly.filter((item,index) => (index%3 === 0));
   const onClickHandler = (h: CurrentWeatherModel) => {
     setActiveIndex(h.dt);
     clickHandler(h);
   };
-
   
   return (
     <div className="selhourly">

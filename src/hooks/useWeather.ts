@@ -15,7 +15,8 @@ import {
 export const useWeather = (
   locationName: string,
   unit: string,
-  useMockData: boolean
+  useMockData: boolean,
+  index:number
 ) => {
   const baseUrl = process.env.REACT_APP_WEATHER_FORECAST_API_BASEURL;
   const apiKey = process.env.REACT_APP_WEATHER_FORECAST_API_KEY;
@@ -33,7 +34,7 @@ export const useWeather = (
   const [dailyWeather, setDailyWeather] = useState<DailyWeatherModel>(
     EmptyDailyWeatherModel
   );
-  const [dayIndex, setDayIndex] = useState("0");
+  const [dayIndex, setDayIndex] = useState(0);
   const handleError = useErrorHandler();
 
   useEffect(() => {
@@ -48,6 +49,7 @@ export const useWeather = (
           setCurrent(weekForecast[0]);
           setHourly(weekForecast[dayIndex].hour);
           setDaily(weekForecast);
+          setDayIndex(index);
         })
         .catch((error) => {
           handleError(error);
@@ -71,7 +73,7 @@ export const useWeather = (
         rain: data.day.daily_will_it_rain,
         visibility: data.day.avgvis_km,
         humidity: data.day.avghumidity,
-        pressure: 1000000000000000,
+        pressure: 100,
         wind_speed: data.day.maxwind_mph,
       },
     });
@@ -105,9 +107,9 @@ export const useWeather = (
     data.slice(1).forEach((item: any) => {
       daily.push({
         dt: item.date_epoch,
-        clouds: 1000000000000,
+        clouds: 100,
         humidity: item.day.avghumidity,
-        pressure: 1000000000000,
+        pressure: 100,
         sunrise: item.astro.sunrise,
         sunset: item.astro.sunset,
         minTemp: item.day.mintemp_c,
