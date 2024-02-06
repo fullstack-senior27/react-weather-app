@@ -55,12 +55,12 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Used Libraries
 
-* React
-* Axios (API Calls)
-* Font Awesome (Icons)
-* React Error Boundary (Error Handling)
-* React Indiana Drag Scroll (Scroll on drag)
-* Github Pages (Deploy)
+- [React](https://github.com/facebook/react)
+- [Axios](https://github.com/axios/axios) (API Calls)
+- [Font Awesome](https://github.com/FortAwesome/Font-Awesome) (Icons)
+- [React Error Boundary](https://github.com/bvaughn/react-error-boundary) (Error Handling)
+- [React Indiana Drag Scroll](https://github.com/norserium/react-indiana-drag-scroll) (Scroll on drag)
+- [Github Pages](https://github.com/tschaub/gh-pages) (Deploy)
 
 ## Setup
 
