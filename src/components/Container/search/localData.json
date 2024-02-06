@@ -1,0 +1,12 @@
+[
+   { "compilerOptions": {
+        "resolveJsonModule": true
+      }},
+    {"name":"India","re":10},
+    {"name":"USA","re":10},
+    {"name":"Japan","re":10},
+    {"name":"Russia","re":10},
+    {"name":"Singapore","re":10}
+    
+
+]

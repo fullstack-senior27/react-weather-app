@@ -1,17 +1,18 @@
 import React from "react";
-import { CurrentWeatherModel, SettingsModel } from "../../models";
-import "./CurrentWeather.scss";
+import "./SelectedCurrentWeather.scss";
+import { CurrentWeatherModel, SettingsModel } from "../../../models";
 
 type CurrentWeatherProps = {
   settings: SettingsModel;
   data: CurrentWeatherModel;
 };
 
-export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
+export const SelectedCurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
   const weatherCode = data.weather.icon;
   const unitSymbol = settings.unit === "metric" ? "C" : "F";
   return (
-    <div className="current-weather">
+    <div className="selcurrent-weather">
+      {/* <a href="/details">Hourly</a> */}
       <div className="image">
         <img src={`https:${weatherCode}`} className="icon" alt="" />
       </div>
@@ -28,4 +29,4 @@ export const CurrentWeather = ({ settings, data }: CurrentWeatherProps) => {
   );
 };
 
-export default CurrentWeather;
+export default SelectedCurrentWeather;

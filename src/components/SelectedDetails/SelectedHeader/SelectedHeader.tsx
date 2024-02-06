@@ -1,9 +1,9 @@
 import React from "react";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faLeftLong, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CurrentWeatherModel, SettingsModel } from "../../models";
-import "./Header.scss";
-import Search from "../Container/search";
+import "./SelectedHeader.scss";
+import { CurrentWeatherModel, SettingsModel } from "../../../models";
+import Search from "../../Container/search";
 
 type HeaderProps = {
   data: CurrentWeatherModel;
@@ -12,7 +12,7 @@ type HeaderProps = {
   changeLocation: (location: string) => void;
 };
 
-export const Header = ({
+export const SelectedHeader = ({
   data,
   settings,
   changeSettings,
@@ -20,28 +20,28 @@ export const Header = ({
 }: HeaderProps) => {
   const getFormatedDate = () => {
     const selectedDate = new Date(data.dt * 1000);
-    const date = selectedDate.toLocaleString("en-GB", {
+    var date = selectedDate.toLocaleString("en-GB", {
       day: "numeric",
       weekday: "long",
       month: "long",
     });
-
-    const year = selectedDate.toLocaleString("en-GB", {
+    var year = selectedDate.toLocaleString("en-GB", {
       year: "numeric",
     });
-
-    const hour = selectedDate.toLocaleString("en-GB", {
+    var hour = selectedDate.toLocaleString("en-GB", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     });
-
     return `${date} ${year} ${hour}`;
   };
 
   return (
     <>
       <div className="location">
+        <a href="/React-WeatherApp" className="backLink">
+          <FontAwesomeIcon icon={faLeftLong}></FontAwesomeIcon>
+        </a>
         <label className="date">{getFormatedDate()}</label>
       </div>
       <div className="settings">
@@ -64,4 +64,4 @@ export const Header = ({
   );
 };
 
-export default Header;
+export default SelectedHeader;

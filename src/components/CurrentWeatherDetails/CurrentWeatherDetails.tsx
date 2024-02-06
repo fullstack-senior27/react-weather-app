@@ -1,5 +1,5 @@
 import React from "react";
-import { CurrentWeatherDetailsModel } from "../../models/CurrentWeatherDetailsModel";
+import { CurrentWeatherDetailsModel } from "../../models";
 import "./CurrentWeatherDetails.scss";
 
 type CurrentWeatherProps = {
@@ -34,3 +34,5 @@ export const CurrentWeatherDetails = ({ data }: CurrentWeatherProps) => {
     </div>
   );
 };
+
+export default CurrentWeatherDetails;

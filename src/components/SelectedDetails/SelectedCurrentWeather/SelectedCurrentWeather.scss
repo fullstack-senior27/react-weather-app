@@ -1,8 +1,8 @@
-@import "../../styles/color-themes";
-@import "../../styles/media-queries";
-@import "../../styles/font-size";
+@import "../../../styles/color-themes";
+@import "../../../styles/media-queries";
+@import "../../../styles/font-size";
 
-.current-weather {
+.selcurrent-weather {
   @include mobile-small-portrait {
     grid-column: span 4;
     grid-row: 3;
@@ -24,11 +24,11 @@
     grid-row: 3;
   }
   @include tablet-landscape {
-    grid-column: span 2;
+    grid-column: span 3;
     grid-row: 3;
   }
   @include desktop {
-    grid-column: span 2;
+    grid-column: span 3;
     grid-row: 3;
   }
   display: flex;

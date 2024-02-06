@@ -1,13 +1,13 @@
 import React from "react";
-import { CurrentWeatherModel, SettingsModel } from "../../models";
-import "./HourlyItem.scss";
+import { CurrentWeatherModel, SettingsModel } from "../../../models";
+import "./SelectedHourlyItem.scss";
 
 type HourlyItemProps = {
   settings: SettingsModel;
   data: CurrentWeatherModel;
 };
 
-export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
+export const SelectedHourlyItem = ({ settings, data }: HourlyItemProps) => {
   const weatherCode = data.weather.icon;
   const unitSymbol = settings.unit === "metric" ? "C" : "F";
   return (
@@ -24,4 +24,4 @@ export const HourlyItem = ({ settings, data }: HourlyItemProps) => {
     </div>
   );
 };
-export default HourlyItem;
+export default SelectedHourlyItem;

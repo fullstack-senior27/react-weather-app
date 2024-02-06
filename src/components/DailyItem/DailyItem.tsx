@@ -2,6 +2,8 @@ import React from "react";
 import { SettingsModel } from "../../models";
 import { DailyWeatherDetailsModel } from "../../models/DailyWeatherDetailsModel";
 import "./DailyItem.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 
 type DailyItemProps = {
   settings: SettingsModel;
@@ -10,18 +12,12 @@ type DailyItemProps = {
 };
 
 export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
-  const weatherCode =
-    settings.theme === "dark"
-    ? `${data.weather.icon}_n`
-    : `${data.weather.icon}`;
+  const weatherCode = `${data.weather.icon}`;
   const unitSymbol = settings.unit === "metric" ? "C" : "F";
+
   return (
     <div className="daily-item" onClick={onClick}>
-      <img
-        src={require(`../../resources/icon_${weatherCode}.png`)}
-        className="icon-small"
-        alt=""
-      />
+      <img src={`https:${weatherCode}`} className="icon-small" alt="" />
       <label className="day">
         {new Date(data.dt * 1000).toLocaleString("en-GB", {
           weekday: "long",
@@ -35,4 +31,5 @@ export const DailyItem = ({ settings, data, onClick }: DailyItemProps) => {
     </div>
   );
 };
+
 export default DailyItem;

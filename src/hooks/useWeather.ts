@@ -17,9 +17,10 @@ export const useWeather = (
   unit: string,
   useMockData: boolean
 ) => {
-  const baseUrl = process.env.REACT_APP_OPENWEATHER_API_BASEURL;
-  const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-  const path = "onecall";
+  const baseUrl = process.env.REACT_APP_WEATHER_FORECAST_API_BASEURL;
+  const apiKey = process.env.REACT_APP_WEATHER_FORECAST_API_KEY;
+  const lat = 35.69;
+  const lon = 139.69;
 
   const { location } = useLocation(locationName, useMockData);
 
@@ -32,20 +33,21 @@ export const useWeather = (
   const [dailyWeather, setDailyWeather] = useState<DailyWeatherModel>(
     EmptyDailyWeatherModel
   );
+  const [dayIndex, setDayIndex] = useState("0");
   const handleError = useErrorHandler();
 
   useEffect(() => {
     setIsLoading(true);
     if (location) {
-      const url = useMockData
-      ? `./mock-data/weather_${unit}.json`
-      : `${baseUrl}?lat=${location.position.latitude}&lon=${location.position.longitude}&units=${unit}&exclude=minutely,alerts&appid=${apiKey}`;
+      const url = `${baseUrl}?key=${apiKey}&q=${lat} ${lon}&days=8`;
+
       axios
         .get(url)
         .then((response) => {
-          setCurrent(response.data.current);
-          setHourly(response.data.hourly);
-          setDaily(response.data.daily);
+          const weekForecast = response.data.forecast.forecastday;
+          setCurrent(weekForecast[0]);
+          setHourly(weekForecast[dayIndex].hour);
+          setDaily(weekForecast);
         })
         .catch((error) => {
           handleError(error);
@@ -55,22 +57,22 @@ export const useWeather = (
         });
     }
   }, [location, unit, useMockData, baseUrl, apiKey, handleError]);
-  
+
   const setCurrent = (data: any) => {
     setCurrentWeather({
-      dt: data.dt,
+      dt: data.date_epoch,
       weather: {
-        icon: data.weather[0].icon,
-        description: data.weather[0].description,
+        icon: data.day.condition.icon,
+        description: data.day.condition.text,
       },
-      temp: data.temp,
-      feels_like: data.feels_like,
+      temp: data.day.avgtemp_c,
+      feels_like: (data.day.mintemp_c + data.day.maxtemp_c) / 2,
       details: {
-        rain: 0,
-        visibility: data.visibility / 1000,
-        humidity: data.humidity,
-        pressure: data.pressure,
-        wind_speed: data.wind_speed,
+        rain: data.day.daily_will_it_rain,
+        visibility: data.day.avgvis_km,
+        humidity: data.day.avghumidity,
+        pressure: 1000000000000000,
+        wind_speed: data.day.maxwind_mph,
       },
     });
   };
@@ -79,19 +81,19 @@ export const useWeather = (
     let hourly: CurrentWeatherModel[] = [];
     data.slice(0, 24).forEach((item: any) => {
       hourly.push({
-        dt: item.dt,
+        dt: item.time_epoch,
         weather: {
-          icon: item.weather[0].icon,
-          description: item.weather[0].description,
+          icon: item.condition.icon,
+          description: item.condition.text,
         },
-        temp: item.temp,
-        feels_like: item.feels_like,
+        temp: item.temp_c,
+        feels_like: item.feelslike_c,
         details: {
-          rain: item.pop * 100,
-          visibility: item.visibility / 1000,
+          rain: item.precip_mm * 100,
+          visibility: item.vis_km,
           humidity: item.humidity,
-          pressure: item.pressure,
-          wind_speed: item.wind_speed,
+          pressure: item.pressure_mb,
+          wind_speed: item.wind_mph,
         },
       });
     });
@@ -102,21 +104,21 @@ export const useWeather = (
     let daily: DailyWeatherDetailsModel[] = [];
     data.slice(1).forEach((item: any) => {
       daily.push({
-        dt: item.dt,
-        clouds: item.clouds,
-        humidity: item.humidity,
-        pressure: item.pressure,
-        sunrise: item.sunrise,
-        sunset: item.sunset,
-        minTemp: item.temp.min,
-        maxTemp: item.temp.max,
-        uvi: item.uvi,
+        dt: item.date_epoch,
+        clouds: 1000000000000,
+        humidity: item.day.avghumidity,
+        pressure: 1000000000000,
+        sunrise: item.astro.sunrise,
+        sunset: item.astro.sunset,
+        minTemp: item.day.mintemp_c,
+        maxTemp: item.day.maxtemp_c,
+        uvi: item.day.uv,
         weather: {
-          icon: item.weather[0].icon,
-          description: item.weather[0].description,
+          icon: item.day.condition.icon,
+          description: item.day.condition.text,
         },
-        wind_speed: item.wind_speed,
-        rain: item.pop * 100,
+        wind_speed: item.day.maxwind_mph,
+        rain: item.day.totalprecip_mm,
       });
     });
     setDailyWeather({ daily: daily });

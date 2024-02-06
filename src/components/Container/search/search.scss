@@ -1,0 +1,37 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  .comboGroup {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 40px;
+    background-color: #cecece;
+    z-index: 0;
+    padding-left: 15px;
+    cursor: pointer;
+  }
+  .shadow {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 30px;
+    top: 110%;
+    width: 100%;
+    z-index: 3;
+    background-color: #dddcdce6;
+    border-radius: 5px;
+    position: absolute;
+
+    .position {
+      padding-left: 15px;
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      cursor: pointer;
+      .position:hover {
+        background-color: rgb(147, 163, 163);
+      }
+    }
+  }
+}

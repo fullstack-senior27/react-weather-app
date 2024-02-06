@@ -19,20 +19,28 @@
     margin-left: 15px;
     font-weight: 600;
     cursor: inherit;
-    .description {
-      @include theme() {
-        color: get-color("text");
-      }
-      flex: 1;
-      margin-right: 15px;
-      text-align: right;
-      cursor: inherit;
+  }
+  .description {
+    @include theme() {
+      color: get-color("text");
     }
+    flex: 1;
+    margin-right: 15px;
+    text-align: right;
+    cursor: inherit;
   }
   .min-max {
     @include theme() {
       color: get-color("text-secondary");
     }
+    cursor: inherit;
+  }
+  .infoLink {
+    @include theme() {
+      color: get-color("text");
+    }
+    margin-left: 15px;
+    text-align: center;
     cursor: inherit;
   }
 }

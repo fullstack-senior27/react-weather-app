@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DailyItem from "../DailyItem/DailyItem";
 import { DailyWeatherModel, SettingsModel } from "../../models";
 import "./Daily.scss";
-import { DailyItemDetails } from "../DailyItemDetails/DailyItemDetails";
+import { Link, useNavigate } from "react-router-dom";
 
 type DailyProps = {
   settings: SettingsModel;
@@ -12,7 +12,7 @@ type DailyProps = {
 export const Daily = ({ settings, data }: DailyProps) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const clickHandler = (d: any) => {
+  const ClickHandler = (d: any) => {
     if (d.dt === activeIndex) {
       setActiveIndex(null);
     } else {
@@ -26,20 +26,17 @@ export const Daily = ({ settings, data }: DailyProps) => {
       <div className="daily-items-container">
         {data.daily.map((d) => (
           <div key={d.dt}>
-            <DailyItem
-              settings={settings}
-              data={d}
-              onClick={() => clickHandler(d)}
-            ></DailyItem>
-            <div
-              className={
-                activeIndex === d.dt
-                  ? "daily-item-header active"
-                  : "daily-item-header"
-              }
+            <Link
+              to={{ pathname: "/React-WeatherApp/Details" }}
+              state={d}
+              className="link"
             >
-              <DailyItemDetails data={d}></DailyItemDetails>
-            </div>
+              <DailyItem
+                settings={settings}
+                data={d}
+                onClick={() => ClickHandler(d)}
+              />
+            </Link>
           </div>
         ))}
       </div>
