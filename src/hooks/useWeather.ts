@@ -23,7 +23,7 @@ export const useWeather = (
   const lat = 35.69;
   const lon = 139.69;
 
-  const { location } = useLocation(locationName, useMockData);
+  const { location } = useLocation(/*locationName*/"Tokyo", useMockData);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] =
@@ -40,7 +40,7 @@ export const useWeather = (
   useEffect(() => {
     setIsLoading(true);
     if (location) {
-      const url = `${baseUrl}?key=${apiKey}&q=${lat} ${lon}&days=8`;
+      const url = `${baseUrl}?key=${apiKey}&q=${lat},${lon}&days=8`;
 
       axios
         .get(url)
