@@ -77,6 +77,14 @@ The app is using **One Call API** from **OpenWeather API**. To start the project
 
 The app is using **Geocoding** and **Reverse Geocoding** from **Google Maps API**. To start the project you need a **google** account and **Google Maps API Key**. You can get the key from [here](https://developers.google.com/maps/documentation/geocoding/overview).
 
+## Additional
 
+### Period
+
+3 days
+
+### New Technology
+
+### Added NPM Packages
 
 Thank You ☺
