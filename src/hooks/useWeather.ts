@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
-import { useLocation } from ".";
 import {
   CurrentWeatherModel,
   DailyWeatherDetailsModel,
@@ -9,23 +8,21 @@ import {
   EmptyCurrentWeather,
   EmptyDailyWeatherModel,
   EmptyHourlyWeatherModel,
+  EmptyLocationModel,
   HourlyWeatherModel,
+  LocationModel,
 } from "../models";
 
 export const useWeather = (
-  locationName: string,
+  location: LocationModel,
   unit: string,
   useMockData: boolean,
   index:number
 ) => {
   const baseUrl = process.env.REACT_APP_WEATHER_FORECAST_API_BASEURL;
-  const apiKey = process.env.REACT_APP_WEATHER_FORECAST_API_KEY;
-  const lat = 35.69;
-  const lon = 139.69;
+  const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
 
-  const { location } = useLocation(locationName, useMockData);
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentWeather, setCurrentWeather] =
     useState<CurrentWeatherModel>(EmptyCurrentWeather);
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeatherModel>(
@@ -38,9 +35,10 @@ export const useWeather = (
   const handleError = useErrorHandler();
 
   useEffect(() => {
-    setIsLoading(true);
-    if (location) {
-      const url = `${baseUrl}?key=${apiKey}&q=${lat},${lon}&days=8`;
+    if (location !== EmptyLocationModel) {
+      setIsLoading(true);
+      
+      const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=8`;
 
       axios
         .get(url)
@@ -128,7 +126,6 @@ export const useWeather = (
 
   return {
     isLoading,
-    location,
     currentWeather,
     hourlyWeather,
     dailyWeather,

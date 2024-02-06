@@ -1,21 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./search.scss";
+import "./SearchCity.scss";
 import axios from "axios";
 import { useErrorHandler } from "react-error-boundary";
 import { debounce } from "lodash";
+import { LocationModel } from "../../models";
 
-const localData = require("./localData.json");
-const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
+const GEO_API_URL = process.env.REACT_APP_WEATHER_LOCATION_API_BASEURL;
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
-const GEO_API_OPTIONS = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "4f0dcce84bmshac9e329bd55fd14p17ec6fjsnff18c2e61917",
-    "X-RapidAPI-Host": "wft-geo-db.p.rapidapi.com",
-  },
+type SearchCityProps = {
+  changeLocation: (loc: LocationModel) => void;
 };
 
-export default function Search() {
+const SearchCity = ({ changeLocation }: SearchCityProps) => {
   const [counter, setCounter] = useState(1);
   const [select, setSelect] = useState("false");
   const [changeLocal, setChangeLocal] = useState("");
@@ -24,10 +21,14 @@ export default function Search() {
   const handleError = useErrorHandler();
   const delayedQuery = useCallback(debounce(e => {
     axios
-    .get(`${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${e.target.value}`, GEO_API_OPTIONS)
+    .get(`${GEO_API_URL}?key=${API_KEY}&q=${e.target.value}`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
     .then((res: any) => {
-      if (res.data && res.data.data) {
-        setCityName(res.data.data);
+      if (res.data) {
+        setCityName(res.data);
       }
     })
     .catch((error) => {
@@ -55,7 +56,7 @@ export default function Search() {
   }
 
   return (
-    <div className="search">
+    <div className="searchCity">
       <input
         className="comboGroup"
         type="text"
@@ -66,24 +67,6 @@ export default function Search() {
         onChange={handleChange}
       />
 
-      {select === "init" && (
-        <div className="shadow">
-          {localData.map((item: any, index: any) => (
-            <div
-              key={index}
-              className="position"
-              onClick={() => {
-                setChangeLocal(item.name);
-                setSelect("false");
-              }}
-            >
-              {" "}
-              {item.name}
-            </div>
-          ))}
-        </div>
-      )}
-
       {select === "get" && (
         <div className="shadow">
           {cityName.map((item: any, index: any) => (
@@ -91,12 +74,18 @@ export default function Search() {
               key={index}
               className="position"
               onClick={() => {
-                setChangeLocal(item.city);
+                setChangeLocal(item.name);
                 setSelect("false");
+                changeLocation({
+                  city: item.name, 
+                  position: {
+                    latitude: item.lat,
+                    longitude: item.lon,
+                  }
+                })
               }}
             >
-              {" "}
-              {item.city}
+              {item.name + ", " + item.region + ", " + item.country}
             </div>
           ))}
         </div>
@@ -104,3 +93,5 @@ export default function Search() {
     </div>
   );
 }
+
+export default SearchCity;
