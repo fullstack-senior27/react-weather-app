@@ -23,7 +23,7 @@ type ContainerProps = {
 };
 
 export const Container = ({ settings, changeSettings }: ContainerProps) => {
-  const useMockData: boolean = true;
+  const useMockData: boolean = false;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] =
     useState(EmptyCurrentWeather);
   const [index, setIndex] = useState(0);

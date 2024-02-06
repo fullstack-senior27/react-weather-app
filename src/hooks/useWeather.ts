@@ -35,7 +35,7 @@ export const useWeather = (
   const handleError = useErrorHandler();
 
   useEffect(() => {
-    if (location !== EmptyLocationModel) {
+    //if (location !== EmptyLocationModel) {
       setIsLoading(true);
       
       const url = `${baseUrl}?key=${apiKey}&q=${location.position.latitude},${location.position.longitude}&days=8`;
@@ -55,7 +55,7 @@ export const useWeather = (
         .finally(() => {
           setTimeout(() => setIsLoading(false), 100);
         });
-    }
+    //}
   }, [location, unit, useMockData, baseUrl, apiKey, handleError]);
 
   const setCurrent = (data: any) => {
@@ -71,7 +71,7 @@ export const useWeather = (
         rain: data.day.daily_will_it_rain,
         visibility: data.day.avgvis_km,
         humidity: data.day.avghumidity,
-        pressure: 100,
+        pressure: data.day.pressure_md,
         wind_speed: data.day.maxwind_mph,
       },
     });
@@ -92,7 +92,7 @@ export const useWeather = (
           rain: item.precip_mm * 100,
           visibility: item.vis_km,
           humidity: item.humidity,
-          pressure: item.pressure_mb,
+          pressure: item.pressure_md,
           wind_speed: item.wind_mph,
         },
       });
@@ -107,7 +107,7 @@ export const useWeather = (
         dt: item.date_epoch,
         clouds: 100,
         humidity: item.day.avghumidity,
-        pressure: 100,
+        pressure: item.day.pressure_md,
         sunrise: item.astro.sunrise,
         sunset: item.astro.sunset,
         minTemp: item.day.mintemp_c,

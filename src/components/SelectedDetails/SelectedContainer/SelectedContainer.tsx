@@ -33,7 +33,7 @@ export const SelectedContainer = ({
   data,
   index,
 }: ContainerProps) => {
-  const useMockData: boolean = true;
+  const useMockData: boolean = false;
   const [currentWeatherSelectedItem, setCurrentWeatherSelectedItem] = useState(EmptyCurrentWeather);
 
   const [location, setLocation] = useState(EmptyLocationModel);

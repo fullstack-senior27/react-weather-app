@@ -17,16 +17,8 @@ export const SelectedDailyWeatherDetails = ({
           <label>{data.rain.toFixed(2)}%</label>
         </div>
         <div className="current-weather-details-grid-item">
-        <label>Pressure:</label>
-          <label>{data.pressure}hPa</label>
-        </div>
-        <div className="current-weather-details-grid-item">
         <label>Humidity:</label>
           <label>{data.humidity}%</label>
-        </div>
-        <div className="current-weather-details-grid-item">
-        <label>Clouds:</label>
-          <label>{data.clouds}%</label>
         </div>
         <div className="current-weather-details-grid-item">
         <label>Wind speed:</label>
